@@ -32,6 +32,18 @@ class Artist
     total
   end
 
+  def self.most_prolific
+    hash = {}
+    Painting.all.each do |yeet|   
+      if hash[yeet.artist.name]
+        hash[yeet.artist.name] += 1.00/yeet.artist.years_experience
+      else
+        hash[yeet.artist.name] = 1.00/yeet.artist.years_experience
+      end
+    end
+    hash.key(hash.values.max)
+  end
+
   def create_painting(title, price, gallery)
     Painting.new(title, price, self, gallery)
   end
