@@ -21,6 +21,11 @@ class Artist
       paint.gallery
     end
   end
+  def cities
+    self.paintings.map do |paint|
+      paint.gallery.city
+    end
+  end
   def self.total_experience
     total = 0 
     self.all.map do |artist|
@@ -43,10 +48,5 @@ class Artist
   end
   def create_painting(title, price, gallery)
     Painting.new(title, price, self, gallery)
-    # create a new painting for the current artist
-    # gallery is an object
-    # title is a string
-    # price is an integer
-    # binding.pry
   end
 end
